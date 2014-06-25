@@ -44,6 +44,3 @@ module.exports = (robot) ->
         msg.send "I removed alias #{alias}"
         delete table[alias]
         robot.brain.set ALIAS_TABLE_KEY, table
-
-  robot.respond /hello/i, (msg)->
-    msg.reply 'hello'
