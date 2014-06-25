@@ -1,0 +1,43 @@
+{
+  "name": "hubot-alias",
+  "description": "Action alias for hubot",
+  "version": "0.0.1",
+  "author": "dtaniwaki",
+  "license": "MIT",
+  "keywords": [
+    "hubot",
+    "hubot-scripts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dtaniwaki/hubot-alias.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dtaniwaki/hubot-alias/issues"
+  },
+  "dependencies": {
+    "hubot": ">=2.3.0",
+    "hubot-scripts": "*"
+  },
+  "devDependencies": {
+    "blanket": "~1.1.6",
+    "chai": "*",
+    "coffee-script": "~1.6.3",
+    "coveralls": "~2.5.0",
+    "mocha": "*",
+    "mocha-lcov-reporter": "0.0.1",
+    "sinon": "*",
+    "sinon-chai": "*"
+  },
+  "main": "index.coffee",
+  "scripts": {
+    "test": "make test"
+  },
+  "config": {
+    "blanket": {
+      "pattern": "hubot-alias/src",
+      "loader": "./node-loaders/coffee-script",
+      "data-cover-never": "node_modules"
+    }
+  }
+}
