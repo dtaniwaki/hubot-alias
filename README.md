@@ -36,6 +36,20 @@ Show alias list
 
 Clear alias list
 
+## Alias Matching Rule
+
+Say, we have the following aliases.
+
+```
+a=a b c d
+ab=a b c d e
+b=b c d
+```
+
+`hubot a` => `hubot a b c d`
+`hubot ab` => `hubot a b c d e`
+`hubot b` => `hubot b c d`
+
 ## Contributing
 
 1. Fork it
