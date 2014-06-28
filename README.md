@@ -49,6 +49,7 @@ b=b c d
 `hubot a` => `hubot a b c d`
 `hubot ab` => `hubot a b c d e`
 `hubot b` => `hubot b c d`
+`hubot b e` => `hubot b c d e`
 
 ## Contributing
 
