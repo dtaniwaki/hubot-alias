@@ -16,16 +16,12 @@ module.exports = (robot) ->
   robot.receive = (msg)->
     table = robot.brain.get(ALIAS_TABLE_KEY) || {}
     orgText = msg.text?.trim()
-    if /^hubot\salias/.test orgText
-      # Skip the check
-    else if /^hubot(\s)(.*)$/.test orgText
+
+    if /hubot(\s)([^\s]*)(.*)$/.test orgText
       sp = RegExp.$1
-      text = RegExp.$2
-      for regexp, value of table
-        replaced = text.replace(new RegExp("^" + regexp + "\\b"), value)
-        if text != replaced
-          msg.text = "hubot#{sp}#{replaced}"
-          break
+      action = RegExp.$2
+      rest = RegExp.$3
+      msg.text = "hubot#{sp}#{table[action] || action}#{rest}" if action != 'alias'
     console.log "Change \"#{orgText}\" as \"#{msg.text}\"" if orgText != msg.text
 
     receiveOrg.bind(robot)(msg)
