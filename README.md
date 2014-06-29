@@ -41,18 +41,21 @@ Clear alias list
 Say, we have the following aliases.
 
 ```
-a=a b c d
-ab=a b c d e
-b=b c d
+foo=poo
+wow=super useful
 ```
 
-`hubot a` => `hubot a b c d`
+`hubot foo` => `hubot poo`
 
-`hubot ab` => `hubot a b c d e`
+`hubot foos` => `hubot foos`
 
-`hubot b` => `hubot b c d`
+`hubot foo 1 2 3` => `hubot poo 1 2 3`
 
-`hubot b e` => `hubot b c d e`
+`hubot bar foo` => `hubot bar foo`
+
+`hubot wow` => `hubot super useful`
+
+`hubot wow hubot-alias` => `hubot super useful hubot-alias`
 
 ## Contributing
 
