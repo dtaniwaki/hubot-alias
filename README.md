@@ -1,6 +1,6 @@
 # Hubot Alias
 
-[![NPM version](https://badge.fury.io/js/hubot-alias.svg)](http://badge.fury.io/js/hubot-alias) [![Build Status](https://travis-ci.org/dtaniwaki/hubot-alias.svg)](https://travis-ci.org/dtaniwaki/hubot-alias)
+[![NPM version](https://badge.fury.io/js/hubot-alias.svg)](http://badge.fury.io/js/hubot-alias) [![Build Status](https://travis-ci.org/dtaniwaki/hubot-alias.svg)](https://travis-ci.org/dtaniwaki/hubot-alias) [![Coverage Status](https://coveralls.io/repos/dtaniwaki/hubot-alias/badge.png)](https://coveralls.io/r/dtaniwaki/hubot-alias)
 
 Action alias for hubot.
 
