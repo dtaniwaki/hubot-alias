@@ -1,3 +1,5 @@
+"use strict"
+#
 # Description:
 #   Action alias for hubot
 #
@@ -22,7 +24,7 @@ module.exports = (robot) ->
       action = RegExp.$2
       rest = RegExp.$3
       msg.text = "hubot#{sp}#{table[action] || action}#{rest}" if action != 'alias'
-    console.log "Change \"#{orgText}\" as \"#{msg.text}\"" if orgText != msg.text
+    console.log "Replace \"#{orgText}\" as \"#{msg.text}\"" if orgText != msg.text
 
     receiveOrg.bind(robot)(msg)
 
@@ -31,18 +33,19 @@ module.exports = (robot) ->
     table = robot.brain.get(ALIAS_TABLE_KEY) || {}
     if text.toLowerCase() == 'clear'
       robot.brain.set ALIAS_TABLE_KEY, {}
-      msg.send "I cleared the alias table"
+      msg.send "I cleared the alias table."
     else if !text
-      msg.send JSON.stringify(table)
+      msg.send "Here you go.\n#{JSON.stringify(table)}"
     else
       match = text.match /([^\s=]*)=(.*)?$/
       alias = match[1]
       action = match[2]
       if action?
-        msg.send "I made alias #{alias} for #{action}"
         table[alias] = action
         robot.brain.set ALIAS_TABLE_KEY, table
+        msg.send "I made an alias #{alias} for \"#{action}\"."
       else
-        msg.send "I removed alias #{alias}"
         delete table[alias]
         robot.brain.set ALIAS_TABLE_KEY, table
+        msg.send "I removed the alias #{alias}."
+
