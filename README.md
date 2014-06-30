@@ -41,15 +41,15 @@ Clear alias list
 Say, we have the following aliases.
 
 ```
-foo=poo
+foo=goo
 wow=super useful
 ```
 
-`hubot foo` => `hubot poo`
+`hubot foo` => `hubot goo`
 
 `hubot foos` => `hubot foos`
 
-`hubot foo 1 2 3` => `hubot poo 1 2 3`
+`hubot foo 1 2 3` => `hubot goo 1 2 3`
 
 `hubot bar foo` => `hubot bar foo`
 

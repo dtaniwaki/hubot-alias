@@ -64,7 +64,7 @@ describe 'alias', ->
 
   describe 'receive hook', ->
     beforeEach ->
-      robot.brain.get = -> {foo: 'poo', wow: 'super useful', alias: 'hacked'}
+      robot.brain.get = -> {foo: 'goo', wow: 'super useful', alias: 'hacked'}
 
       # respond to all messages to check them
       robot.respond /(.*)$/i, (msg)->
@@ -72,7 +72,7 @@ describe 'alias', ->
         msg.send s if s != 'alias'
 
     it 'replaces alias string', (done)->
-      sharedExample done, 'hubot foo', 'poo'
+      sharedExample done, 'hubot foo', 'goo'
     it 'does not replace front-matching string', (done)->
       sharedExample done, 'hubot foos', 'foos'
     it 'does not replace anything', (done)->
@@ -84,7 +84,7 @@ describe 'alias', ->
 
     context 'with arguments', ->
       it 'replaces alias string', (done)->
-        sharedExample done, 'hubot foo 1 2 3', 'poo 1 2 3'
+        sharedExample done, 'hubot foo 1 2 3', 'goo 1 2 3'
       it 'does not replace anything', (done)->
         sharedExample done, 'hubot bar 1 2 3', 'bar 1 2 3'
       it 'does not replace the arguments', (done)->
@@ -100,14 +100,14 @@ describe 'alias', ->
   describe 'respond alias', ->
     beforeEach ->
       @brainSetSpy = sinon.spy()
-      robot.brain.get = -> {foo: 'poo', bar: 'par'}
+      robot.brain.get = -> {foo: 'goo', bar: 'par'}
       robot.brain.set = @brainSetSpy
 
     it 'shows alias table', (done)->
       adapter.on "send", (envelope, strings)->
         try
           expect(strings).to.have.length(1)
-          expect(strings[0]).to.equal "Here you go.\n{\"foo\":\"poo\",\"bar\":\"par\"}"
+          expect(strings[0]).to.equal "Here you go.\n{\"foo\":\"goo\",\"bar\":\"par\"}"
           do done
         catch e
           done e
@@ -133,7 +133,7 @@ describe 'alias', ->
         catch e
           done e
       adapter.receive new TextMessage(user, "hubot alias wow=useful")
-      expect(@brainSetSpy).to.have.been.calledWith sinon.match.string, {foo: 'poo', bar: 'par', wow: 'useful'}
+      expect(@brainSetSpy).to.have.been.calledWith sinon.match.string, {foo: 'goo', bar: 'par', wow: 'useful'}
 
     it 'sets multiple words alias', (done)->
       adapter.on "send", (envelope, strings)->
@@ -144,7 +144,7 @@ describe 'alias', ->
         catch e
           done e
       adapter.receive new TextMessage(user, "hubot alias wow=super useful")
-      expect(@brainSetSpy).to.have.been.calledWith sinon.match.string, {foo: 'poo', bar: 'par', wow: 'super useful'}
+      expect(@brainSetSpy).to.have.been.calledWith sinon.match.string, {foo: 'goo', bar: 'par', wow: 'super useful'}
 
     it 'removes an alias', (done)->
       adapter.on "send", (envelope, strings)->
@@ -155,6 +155,6 @@ describe 'alias', ->
         catch e
           done e
       adapter.receive new TextMessage(user, "hubot alias bar=")
-      expect(@brainSetSpy).to.have.been.calledWith sinon.match.string, {foo: 'poo'}
+      expect(@brainSetSpy).to.have.been.calledWith sinon.match.string, {foo: 'goo'}
 
 
