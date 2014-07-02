@@ -1,6 +1,9 @@
 # Hubot Alias
 
-[![NPM version](https://badge.fury.io/js/hubot-alias.svg)](http://badge.fury.io/js/hubot-alias) [![Dependency Status](https://david-dm.org/dtaniwaki/hubot-alias.svg)](https://david-dm.org/dtaniwaki/hubot-alias) [![Build Status](https://travis-ci.org/dtaniwaki/hubot-alias.svg)](https://travis-ci.org/dtaniwaki/hubot-alias) [![Coverage Status](https://coveralls.io/repos/dtaniwaki/hubot-alias/badge.png)](https://coveralls.io/r/dtaniwaki/hubot-alias)
+[![NPM Version][npm-image]][npm-link]
+[![Dependency Status][deps-image]][deps-link]
+[![Build Status][build-image]][build-link]
+[![Coverage Status][cov-image]][cov-link]
 
 Action alias for hubot.
 
@@ -68,3 +71,15 @@ wow=super useful
 ## Copyright
 
 Copyright (c) 2014 Daisuke Taniwaki. See [LICENSE](LICENSE) for details.
+
+
+
+[npm-image]:   https://badge.fury.io/js/hubot-alias.svg
+[npm-link]:    http://badge.fury.io/js/hubot-alias
+[build-image]: https://secure.travis-ci.org/dtaniwaki/hubot-alias.png
+[build-link]:  http://travis-ci.org/dtaniwaki/hubot-alias
+[deps-image]:  https://david-dm.org/dtaniwaki/hubot-alias.svg
+[deps-link]:   https://david-dm.org/dtaniwaki/hubot-alias
+[cov-image]:   https://coveralls.io/repos/dtaniwaki/hubot-alias/badge.png
+[cov-link]:    https://coveralls.io/r/dtaniwaki/hubot-alias
+
