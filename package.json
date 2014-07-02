@@ -6,7 +6,9 @@
   "license": "MIT",
   "keywords": [
     "hubot",
-    "hubot-scripts"
+    "hubot-scripts",
+    "alias",
+    "rename"
   ],
   "repository": {
     "type": "git",
