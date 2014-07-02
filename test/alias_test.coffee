@@ -56,7 +56,6 @@ describe 'alias', ->
   describe 'help', ->
     it 'has help messages', ->
       commands = robot.helpCommands()
-      console.log commands
       expect(commands).to.eql [
         "hubot alias clear - Clear the alias table",
         "hubot alias xxx= - Remove alias xxx for yyy",
