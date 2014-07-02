@@ -58,8 +58,11 @@ describe 'alias', ->
       commands = robot.helpCommands()
       console.log commands
       expect(commands).to.eql [
-        'hubot help - Displays all of the help commands that Hubot knows about.',
-        'hubot help <query> - Displays all help commands that match <query>.'
+        "hubot alias clear - Clear the alias table",
+        "hubot alias xxx= - Remove alias xxx for yyy",
+        "hubot alias xxx=yyy - Make alias xxx for yyy",
+        "hubot help - Displays all of the help commands that Hubot knows about.",
+        "hubot help <query> - Displays all help commands that match <query>."
       ]
 
   describe 'receive hook', ->

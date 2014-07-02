@@ -1,5 +1,3 @@
-"use strict"
-#
 # Description:
 #   Action alias for hubot
 #
@@ -10,6 +8,8 @@
 #
 # Author:
 #   dtaniwaki
+#
+"use strict"
 
 ALIAS_TABLE_KEY = 'hubot-alias-table'
 
