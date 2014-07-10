@@ -97,7 +97,7 @@ describe 'alias', ->
         robot.brain.get = -> {}
 
       it 'does not replace anything', (done)->
-        sharedExample done, 'hubot alias', "Here you go.\n{}"
+        sharedExample done, 'hubot alias', "Here you go.\n"
 
   describe 'respond alias', ->
     beforeEach ->
@@ -109,7 +109,7 @@ describe 'alias', ->
       adapter.on "send", (envelope, strings)->
         try
           expect(strings).to.have.length(1)
-          expect(strings[0]).to.equal "Here you go.\n{\"foo\":\"goo\",\"bar\":\"par\"}"
+          expect(strings[0]).to.equal "Here you go.\nfoo : goo\nbar : par"
           do done
         catch e
           done e
