@@ -35,7 +35,10 @@ module.exports = (robot) ->
       robot.brain.set ALIAS_TABLE_KEY, {}
       msg.send "I cleared the alias table."
     else if !text
-      msg.send "Here you go.\n#{JSON.stringify(table)}"
+      s = []
+      for k, v of table
+        s.push "#{k} : #{v}"
+      msg.send "Here you go.\n#{s.join("\n")}"
     else
       match = text.match /([^\s=]*)=(.*)?$/
       alias = match[1]
