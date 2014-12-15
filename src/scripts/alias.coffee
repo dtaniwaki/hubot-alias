@@ -18,12 +18,11 @@ module.exports = (robot) ->
   robot.receive = (msg)->
     table = robot.brain.get(ALIAS_TABLE_KEY) || {}
     orgText = msg.text?.trim()
-
-    if /hubot(\s)([^\s]*)(.*)$/.test orgText
+    if new RegExp("#{robot.name}(\\s+)([^\\s]*)(.*)$").test orgText
       sp = RegExp.$1
       action = RegExp.$2
       rest = RegExp.$3
-      msg.text = "hubot#{sp}#{table[action] || action}#{rest}" if action != 'alias'
+      msg.text = "#{robot.name}#{sp}#{table[action] || action}#{rest}" if action != 'alias'
     console.log "Replace \"#{orgText}\" as \"#{msg.text}\"" if orgText != msg.text
 
     receiveOrg.bind(robot)(msg)
