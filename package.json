@@ -17,11 +17,9 @@
   "bugs": {
     "url": "https://github.com/dtaniwaki/hubot-alias/issues"
   },
-  "dependencies": {
-    "hubot": ">=2.3.0",
-    "hubot-scripts": "*"
-  },
   "devDependencies": {
+    "hubot": "2.8.0",
+    "hubot-scripts": "*",
     "blanket": "~1.1.6",
     "chai": "*",
     "coffee-script": "~1.6.3",

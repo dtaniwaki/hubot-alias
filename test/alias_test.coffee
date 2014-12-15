@@ -24,7 +24,7 @@ describe 'alias', ->
       # load help scripts to test help messages
       hubotScripts = path.resolve 'node_modules', 'hubot', 'src', 'scripts'
       robot.loadFile hubotScripts, 'help.coffee'
-    
+
       user = robot.brain.userForId '1', {
         name: 'dtaniwaki'
         room: '#mocha'
@@ -42,6 +42,8 @@ describe 'alias', ->
 
   afterEach ->
     do robot.shutdown
+    do robot.server.close
+    process.removeAllListeners 'uncaughtException'
 
   sharedExample = (done, src, dst)->
     adapter.on "send", (envelope, strings)->
