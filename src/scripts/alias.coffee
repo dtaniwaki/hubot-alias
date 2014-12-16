@@ -18,11 +18,12 @@ module.exports = (robot) ->
   robot.receive = (msg)->
     table = robot.brain.get(ALIAS_TABLE_KEY) || {}
     orgText = msg.text?.trim()
-    if new RegExp("#{robot.name}(\\s+)([^\\s]*)(.*)$").test orgText
-      sp = RegExp.$1
-      action = RegExp.$2
-      rest = RegExp.$3
-      msg.text = "#{robot.name}#{sp}#{table[action] || action}#{rest}" if action != 'alias'
+    if new RegExp("(^[@]?(?:#{robot.name}|#{robot.alias})[:,]?)(\\s+)([^\\s]*)(.*)$").test orgText
+      name = RegExp.$1
+      sp = RegExp.$2
+      action = RegExp.$3
+      rest = RegExp.$4
+      msg.text = "#{name}#{sp}#{table[action] || action}#{rest}" if action != 'alias'
     console.log "Replace \"#{orgText}\" as \"#{msg.text}\"" if orgText != msg.text
 
     receiveOrg.bind(robot)(msg)
