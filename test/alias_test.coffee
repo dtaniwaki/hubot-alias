@@ -68,7 +68,7 @@ describe 'alias', ->
 
   describe 'receive hook', ->
     beforeEach ->
-      robot.brain.get = -> {foo: 'goo', wow: 'super useful', alias: 'hacked'}
+      robot.brain.get = -> {foo: 'goo', wow: 'super useful', alias: 'hacked', params: 'goo --name=$1'}
 
       # respond to all messages to check them
       robot.respond /(.*)$/i, (msg)->
@@ -77,6 +77,8 @@ describe 'alias', ->
 
     it 'replaces alias string', (done)->
       sharedExample done, 'hubot foo', 'goo'
+    it 'replaces alias string with params', (done)->
+      sharedExample done, 'hubot params john', 'goo --name=john'
     it 'does not replace front-matching string', (done)->
       sharedExample done, 'hubot foos', 'foos'
     it 'does not replace anything', (done)->
