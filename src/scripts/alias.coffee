@@ -13,6 +13,15 @@
 
 ALIAS_TABLE_KEY = 'hubot-alias-table'
 
+loadArgumentsInAction = (args, action) ->
+  argItems = args.trim().split(' ')
+
+  for val, i in argItems
+	  if action.indexOf('$'+(i+1)) > -1 then action = action.replace('$'+(i+1), val) else action += " #{val}"
+
+  action.trim()
+
+
 module.exports = (robot) ->
   receiveOrg = robot.receive
   robot.receive = (msg)->
@@ -23,9 +32,13 @@ module.exports = (robot) ->
       sp = RegExp.$2
       action = RegExp.$3
       rest = RegExp.$4
-      msg.text = "#{name}#{sp}#{table[action] || action}#{rest}" if action != 'alias'
-    console.log "Replace \"#{orgText}\" as \"#{msg.text}\"" if orgText != msg.text
 
+      if action != 'alias'
+        action = table[action] or action
+        msg.text = "#{name}#{sp}"
+        msg.text += loadArgumentsInAction(rest, action)
+
+    console.log "Replace \"#{orgText}\" as \"#{msg.text}\"" if orgText != msg.text
     receiveOrg.bind(robot)(msg)
 
   robot.respond /alias(.*)$/i, (msg)->
