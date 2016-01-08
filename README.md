@@ -45,6 +45,7 @@ Say, we have the following aliases.
 
 ```
 foo=goo
+ring=goo --name=$1
 wow=super useful
 ```
 
@@ -53,6 +54,10 @@ wow=super useful
 `hubot foos` => `hubot foos`
 
 `hubot foo 1 2 3` => `hubot goo 1 2 3`
+
+`hubot ring john` => `hubot goo --name=john`
+
+`hubot ring john test` => `hubot goo --name=john test`
 
 `hubot bar foo` => `hubot bar foo`
 
