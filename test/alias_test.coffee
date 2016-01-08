@@ -42,7 +42,7 @@ describe 'alias', ->
 
   afterEach ->
     do robot.shutdown
-    do robot.server.close
+    do robot.server.close if robot.server
     process.removeAllListeners 'uncaughtException'
 
   sharedExample = (done, src, dst)->
