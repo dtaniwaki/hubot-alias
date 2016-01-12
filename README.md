@@ -45,7 +45,7 @@ Say, we have the following aliases.
 
 ```
 foo=goo
-ring=goo --name=$1
+ring=goo --name=$1 --message=$2
 wow=super useful
 ```
 
@@ -55,7 +55,7 @@ wow=super useful
 
 `hubot foo 1 2 3` => `hubot goo 1 2 3`
 
-`hubot ring john` => `hubot goo --name=john`
+`hubot ring john hello` => `hubot goo --name=john --message=hello`
 
 `hubot ring john test` => `hubot goo --name=john test`
 
@@ -87,4 +87,3 @@ Copyright (c) 2014 Daisuke Taniwaki. See [LICENSE](LICENSE) for details.
 [deps-link]:   https://david-dm.org/dtaniwaki/hubot-alias
 [cov-image]:   https://coveralls.io/repos/dtaniwaki/hubot-alias/badge.png
 [cov-link]:    https://coveralls.io/r/dtaniwaki/hubot-alias
-
