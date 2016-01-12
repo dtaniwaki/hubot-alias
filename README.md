@@ -57,7 +57,7 @@ wow=super useful
 
 `hubot ring john hello` => `hubot goo --name=john --message=hello`
 
-`hubot ring john test` => `hubot goo --name=john test`
+`hubot ring john hello test` => `hubot goo --name=john --message=hello test`
 
 `hubot bar foo` => `hubot bar foo`
 
