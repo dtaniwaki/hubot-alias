@@ -14,11 +14,13 @@
 ALIAS_TABLE_KEY = 'hubot-alias-table'
 
 loadArgumentsInAction = (args, action) ->
-  argItems = args.trim().split(' ')
+  args = args.trim()
+  if args
+    argItems = args.split(' ')
 
-  for val, i in argItems
-	  if action.indexOf('$'+(i+1)) > -1 then action = action.replace('$'+(i+1), val) else action += " #{val}"
-
+    for val, i in argItems
+      if action.indexOf('$'+(i+1)) > -1 then action = action.replace('$'+(i+1), val) else action += " #{val}"
+  action = action.replace(/\$\d+/g, "")
   action.trim()
 
 
