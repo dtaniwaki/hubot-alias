@@ -8,7 +8,7 @@ chai.use require("sinon-chai")
 
 Robot       = require("hubot/src/robot")
 TextMessage = require("hubot/src/message").TextMessage
-process.env.HUBOT_LOG_LEVEL = 'debug'
+process.env.HUBOT_LOG_LEVEL ||= 'error'
 
 describe 'alias', ->
   robot = null

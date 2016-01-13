@@ -40,7 +40,7 @@ module.exports = (robot) ->
         msg.text = "#{name}#{sp}"
         msg.text += loadArgumentsInAction(rest, action)
 
-    console.log "Replace \"#{orgText}\" as \"#{msg.text}\"" if orgText != msg.text
+    robot.logger.info "Replace \"#{orgText}\" as \"#{msg.text}\"" if orgText != msg.text
     receiveOrg.bind(robot)(msg)
 
   robot.respond /alias(.*)$/i, (msg)->
