@@ -79,6 +79,8 @@ describe 'alias', ->
       sharedExample done, 'hubot foo', 'goo'
     it 'replaces alias string with params', (done)->
       sharedExample done, 'hubot params john hello', 'goo --name=john --message=hello'
+    it 'appends unused string', (done)->
+      sharedExample done, 'hubot params john hello hey', 'goo --name=john --message=hello hey'
     it 'does not replace front-matching string', (done)->
       sharedExample done, 'hubot foos', 'foos'
     it 'does not replace anything', (done)->
