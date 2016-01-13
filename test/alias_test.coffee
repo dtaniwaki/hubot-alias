@@ -68,7 +68,7 @@ describe 'alias', ->
 
   describe 'receive hook', ->
     beforeEach ->
-      robot.brain.get = -> {foo: 'goo', wow: 'super useful', alias: 'hacked', params: 'goo --name=$1 --message=$2', tricky_params: 'goo --foo=$3 --bar=$1'}
+      robot.brain.get = -> {foo: 'goo', wow: 'super useful', alias: 'hacked', params: 'goo --name=$1 --message=$2', reverse_params: 'goo --name=$3 --message=$1'}
 
       # respond to all messages to check them
       robot.respond /(.*)$/i, (msg)->
@@ -77,20 +77,26 @@ describe 'alias', ->
 
     it 'replaces alias string', (done)->
       sharedExample done, 'hubot foo', 'goo'
-    it 'replaces alias string with params', (done)->
-      sharedExample done, 'hubot params john hello', 'goo --name=john --message=hello'
-    it 'puts empties on unexisting string with params', (done)->
-      sharedExample done, 'hubot params', 'goo --name= --message='
-    it 'appends unused string', (done)->
-      sharedExample done, 'hubot params john hello hey', 'goo --name=john --message=hello hey'
     it 'does not replace front-matching string', (done)->
       sharedExample done, 'hubot foos', 'foos'
     it 'does not replace anything', (done)->
       sharedExample done, 'hubot bar', 'bar'
-    it 'puts empties on unexisting string with tricky_params', (done)->
-      sharedExample done, 'hubot tricky_params', 'goo --foo= --bar='
-    it 'replaces alias strings with tricky_params', (done)->
-      sharedExample done, 'hubot tricky_params john hello hey yay', 'goo --foo=hey --bar=john hello yay'
+
+    context 'with placeholders', ->
+      it 'replaces alias string', (done)->
+        sharedExample done, 'hubot params john hello', 'goo --name=john --message=hello'
+      it 'puts empties on unexisting string', (done)->
+        sharedExample done, 'hubot params', 'goo --name= --message='
+      it 'appends unused string', (done)->
+        sharedExample done, 'hubot params john hello hey', 'goo --name=john --message=hello hey'
+
+    context 'with reverse order placeholders', ->
+      it 'replaces alias string', (done)->
+        sharedExample done, 'hubot reverse_params john hello hey', 'goo --name=hey --message=john hello'
+      it 'puts empties on unexisting string', (done)->
+        sharedExample done, 'hubot reverse_params', 'goo --name= --message='
+      it 'appends unused string', (done)->
+        sharedExample done, 'hubot reverse_params john hello hey yay', 'goo --name=hey --message=john hello yay'
 
     context 'multiple words replace', ->
       it 'replaces alias string', (done)->
