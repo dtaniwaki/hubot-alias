@@ -42,7 +42,7 @@ describe 'alias', ->
 
   afterEach ->
     do robot.shutdown
-    do robot.server.close
+    do robot.server.close if robot.server
     process.removeAllListeners 'uncaughtException'
 
   sharedExample = (done, src, dst)->
@@ -68,7 +68,7 @@ describe 'alias', ->
 
   describe 'receive hook', ->
     beforeEach ->
-      robot.brain.get = -> {foo: 'goo', wow: 'super useful', alias: 'hacked'}
+      robot.brain.get = -> {foo: 'goo', wow: 'super useful', alias: 'hacked', params: 'goo --name=$1 --message=$2'}
 
       # respond to all messages to check them
       robot.respond /(.*)$/i, (msg)->
@@ -77,6 +77,8 @@ describe 'alias', ->
 
     it 'replaces alias string', (done)->
       sharedExample done, 'hubot foo', 'goo'
+    it 'replaces alias string with params', (done)->
+      sharedExample done, 'hubot params john hello', 'goo --name=john --message=hello'
     it 'does not replace front-matching string', (done)->
       sharedExample done, 'hubot foos', 'foos'
     it 'does not replace anything', (done)->
@@ -160,5 +162,3 @@ describe 'alias', ->
           done e
       adapter.receive new TextMessage(user, "hubot alias bar=")
       expect(@brainSetSpy).to.have.been.calledWith sinon.match.string, {foo: 'goo'}
-
-
