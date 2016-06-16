@@ -166,6 +166,17 @@ describe 'alias', ->
       adapter.receive new TextMessage(user, "hubot alias wow=super useful")
       expect(@brainSetSpy).to.have.been.calledWith sinon.match.string, {foo: 'goo', bar: 'par', wow: 'super useful'}
 
+    it 'sets multiple words alias name', (done)->
+      adapter.on "send", (envelope, strings)->
+        try
+          expect(strings).to.have.length(1)
+          expect(strings[0]).to.equal 'I made an alias foo bar for "cool".'
+          do done
+        catch e
+          done e
+      adapter.receive new TextMessage(user, "hubot alias foo bar=cool")
+      expect(@brainSetSpy).to.have.been.calledWith sinon.match.string, {foo: 'goo', bar: 'par', 'foo bar': 'cool'}
+
     it 'removes an alias', (done)->
       adapter.on "send", (envelope, strings)->
         try
