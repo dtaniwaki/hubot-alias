@@ -36,7 +36,7 @@ module.exports = (robot) ->
       rest = RegExp.$4
 
       if action != 'alias'
-        action = table[action] or action
+        action = table[action] or table[action+rest] or action
         msg.text = "#{name}#{sp}"
         msg.text += loadArgumentsInAction(rest, action)
 
@@ -55,7 +55,7 @@ module.exports = (robot) ->
         s.push "#{k} : #{v}"
       msg.send "Here you go.\n#{s.join("\n")}"
     else
-      match = text.match /([^\s=]*)=(.*)?$/
+      match = text.match /([^=]*)=(.*)?$/
       alias = match[1]
       action = match[2]
       if action?
