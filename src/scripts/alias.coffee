@@ -29,14 +29,19 @@ module.exports = (robot) ->
   robot.receive = (msg)->
     table = robot.brain.get(ALIAS_TABLE_KEY) || {}
     orgText = msg.text?.trim()
-    if new RegExp("(^[@]?(?:#{robot.name}|#{robot.alias})[:,]?)(\\s+)([^\\s]*)(.*)$").test orgText
+    if new RegExp("(^[@]?(?:#{robot.name}|#{robot.alias})[:,]?)(\\s+)(.*)$").test orgText
       name = RegExp.$1
       sp = RegExp.$2
       action = RegExp.$3
-      rest = RegExp.$4
 
-      if action != 'alias'
-        action = table[action] or table[action+rest] or action
+      if action && action != 'alias'
+        rest = ''
+        for k in Object.keys(table).sort().reverse()
+          v = table[k]
+          if new RegExp("^#{k}\\b").test(action)
+            rest = action.slice(k.length)
+            action = v
+            break
         msg.text = "#{name}#{sp}"
         msg.text += loadArgumentsInAction(rest, action)
 
