@@ -20,7 +20,8 @@ loadArgumentsInAction = (args, action) ->
 
     for val, i in argItems
       if action.indexOf('$'+(i+1)) > -1 then action = action.replace('$'+(i+1), val) else action += " #{val}"
-  action = action.replace(/\$\d+/g, "")
+  if action.indexOf('alias') != 0
+    action = action.replace(/\$\d+/g, "")
   action.trim()
 
 
