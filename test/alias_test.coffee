@@ -47,6 +47,7 @@ describe 'alias', ->
 
   sharedExample = (done, src, dst)->
     adapter.on "send", (envelope, strings)->
+      return if strings[0].indexOf('I made an alias') == 0
       try
         expect(strings).to.have.length(1)
         expect(strings[0]).to.equal dst
@@ -90,6 +91,10 @@ describe 'alias', ->
       it 'appends unused string', (done)->
         sharedExample done, 'hubot params john hello hey', 'goo --name=john --message=hello hey'
 
+    context 'with placeholders in an alias action', ->
+      it 'does not replace placeholders', (done)->
+        sharedExample done, 'hubot alias command=something=$1', 'alias command=something=$1'
+        
     context 'with reverse order placeholders', ->
       it 'replaces alias string', (done)->
         sharedExample done, 'hubot reverse_params john hello hey', 'goo --name=hey --message=john hello'

@@ -20,8 +20,8 @@ loadArgumentsInAction = (args, action) ->
 
     for val, i in argItems
       if action.indexOf('$'+(i+1)) > -1 then action = action.replace('$'+(i+1), val) else action += " #{val}"
-  if action.indexOf('alias') != 0
-    action = action.replace(/\$\d+/g, "")
+
+  action = action.replace(/\$\d+/g, "")
   action.trim()
 
 
@@ -35,7 +35,7 @@ module.exports = (robot) ->
       sp = RegExp.$2
       action = RegExp.$3
 
-      if action && action != 'alias'
+      if action && action.indexOf('alias') != 0
         rest = ''
         for k in Object.keys(table).sort().reverse()
           v = table[k]
