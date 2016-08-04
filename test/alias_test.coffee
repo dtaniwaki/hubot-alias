@@ -94,7 +94,7 @@ describe 'alias', ->
     context 'with placeholders in an alias action', ->
       it 'does not replace placeholders', (done)->
         sharedExample done, 'hubot alias command=something=$1 other=$2', 'alias command=something=$1 other=$2'
-        
+
     context 'with reverse order placeholders', ->
       it 'replaces alias string', (done)->
         sharedExample done, 'hubot reverse_params john hello hey', 'goo --name=hey --message=john hello'
@@ -192,3 +192,14 @@ describe 'alias', ->
           done e
       adapter.receive new TextMessage(user, "hubot alias bar=")
       expect(@brainSetSpy).to.have.been.calledWith sinon.match.string, {foo: 'goo'}
+
+    it 'sets alias with placeholders', (done)->
+      adapter.on "send", (envelope, strings)->
+        try
+          expect(strings).to.have.length(1)
+          expect(strings[0]).to.equal 'I made an alias command for "something=$1 other=$2".'
+          do done
+        catch e
+          done e
+      adapter.receive new TextMessage(user, "hubot alias command=something=$1 other=$2")
+      expect(@brainSetSpy).to.have.been.calledWith sinon.match.string, {foo: 'goo', bar: 'par', command: 'something=$1 other=$2'}
