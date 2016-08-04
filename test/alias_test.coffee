@@ -93,7 +93,7 @@ describe 'alias', ->
 
     context 'with placeholders in an alias action', ->
       it 'does not replace placeholders', (done)->
-        sharedExample done, 'hubot alias command=something=$1', 'alias command=something=$1'
+        sharedExample done, 'hubot alias command=something=$1 other=$2', 'alias command=something=$1 other=$2'
         
     context 'with reverse order placeholders', ->
       it 'replaces alias string', (done)->
